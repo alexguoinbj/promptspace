@@ -237,7 +237,7 @@ export default function App() {
 
   if (!isAuthInitialized || isLoading) {
     return (
-      <div className="flex h-screen w-full bg-[#f8f9fa] dark:bg-[#0a0c10] items-center justify-center transition-colors duration-300">
+      <div className="flex h-full w-full bg-[#f8f9fa] dark:bg-[#0a0c10] items-center justify-center transition-colors duration-300">
         <div className="flex flex-col items-center gap-4">
           <Loader2 size={32} className="animate-spin text-blue-600" />
           <p className="text-gray-500 dark:text-gray-400 font-medium">
@@ -249,7 +249,7 @@ export default function App() {
   }
 
   return (
-    <div className="flex h-screen w-full bg-[#f8f9fa] dark:bg-[#0a0c10] text-gray-900 dark:text-gray-200 overflow-hidden selection:bg-blue-500/30 selection:text-blue-200 transition-colors duration-300">
+    <div className="flex h-full w-full bg-[#f8f9fa] dark:bg-[#0a0c10] text-gray-900 dark:text-gray-200 overflow-hidden selection:bg-blue-500/30 selection:text-blue-200 transition-colors duration-300">
       <Sidebar 
         onNew={() => {
           setEditingPromptId(null);

@@ -1,11 +1,11 @@
 import React from 'react';
-import { 
-  LayoutGrid, 
-  Star, 
-  Folder, 
-  Plus, 
-  Tag, 
-  ExternalLink, 
+import {
+  LayoutGrid,
+  Star,
+  Folder,
+  Plus,
+  Tag,
+  ExternalLink,
   Settings,
   ChevronRight,
   Code,
@@ -44,9 +44,9 @@ interface SidebarProps {
   className?: string;
 }
 
-export const Sidebar: React.FC<SidebarProps> = ({ 
-  onNew, 
-  onNewFolder, 
+export const Sidebar: React.FC<SidebarProps> = ({
+  onNew,
+  onNewFolder,
   onDeleteFolder,
   prompts,
   folders,
@@ -63,7 +63,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
   onLogout,
   onOpenSettings,
   language,
-  className 
+  className
 }) => {
   const t = translations[language];
   // Extract unique tags from all prompts
@@ -103,7 +103,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
   };
 
   return (
-    <div className={cn("w-64 bg-white dark:bg-[#0f1115] border-r border-gray-200 dark:border-white/5 flex flex-col h-full text-gray-500 dark:text-gray-400 transition-colors duration-300", className)}>
+    <div className={cn("w-80 bg-white dark:bg-[#0f1115] border-r border-gray-200 dark:border-white/5 flex flex-col h-full text-gray-500 dark:text-gray-400 transition-colors duration-300", className)}>
       {/* Logo */}
       <div className="p-6 flex items-center gap-2">
         <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold">P</div>
@@ -112,41 +112,41 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
       {/* Main Nav */}
       <div className="px-3 space-y-1">
-        <button 
+        <button
           onClick={onNew}
-          className="w-full flex items-center gap-3 px-3 py-2 rounded-lg bg-blue-600/10 text-blue-600 dark:text-blue-400 hover:bg-blue-600/20 transition-all mb-4"
+          className="w-full flex items-center gap-4 px-4 py-3 rounded-xl bg-blue-600/10 text-blue-600 dark:text-blue-400 hover:bg-blue-600/20 transition-all mb-6"
         >
-          <Plus size={18} />
-          <span className="text-sm font-bold">{t.newPrompt}</span>
+          <Plus size={24} />
+          <span className="text-[21px] font-bold">{t.newPrompt}</span>
         </button>
-        <button 
+        <button
           onClick={handleSelectAll}
           className={cn(
-            "w-full flex items-center gap-3 px-3 py-2 rounded-lg transition-all",
+            "w-full flex items-center gap-4 px-4 py-3 rounded-xl transition-all",
             (selectedFolderId === null && !showFavorites) ? "bg-gray-100 dark:bg-white/5 text-gray-900 dark:text-white" : "hover:bg-gray-100 dark:hover:bg-white/5 text-gray-500 dark:text-gray-400"
           )}
         >
-          <LayoutGrid size={18} />
-          <span className="text-sm font-medium">{t.allPrompts}</span>
-          <span className="ml-auto text-xs opacity-50">{getFolderPromptCount(null)}</span>
+          <LayoutGrid size={24} />
+          <span className="text-[21px] font-medium">{t.allPrompts}</span>
+          <span className="ml-auto text-sm opacity-50">{getFolderPromptCount(null)}</span>
         </button>
-        <button 
+        <button
           onClick={handleSelectFavorites}
           className={cn(
-            "w-full flex items-center gap-3 px-3 py-2 rounded-lg transition-all",
+            "w-full flex items-center gap-4 px-4 py-3 rounded-xl transition-all",
             showFavorites ? "bg-gray-100 dark:bg-white/5 text-gray-900 dark:text-white" : "hover:bg-gray-100 dark:hover:bg-white/5 text-gray-500 dark:text-gray-400"
           )}
         >
-          <Star size={18} className={showFavorites ? "text-yellow-500 fill-yellow-500" : ""} />
-          <span className="text-sm font-medium">{t.favorites}</span>
-          <span className="ml-auto text-xs opacity-50">{prompts.filter(p => p.isFavorite).length}</span>
+          <Star size={24} className={showFavorites ? "text-yellow-500 fill-yellow-500" : ""} />
+          <span className="text-[21px] font-medium">{t.favorites}</span>
+          <span className="ml-auto text-sm opacity-50">{prompts.filter(p => p.isFavorite).length}</span>
         </button>
       </div>
 
       {/* Folders */}
       <div className="mt-8 px-6 flex items-center justify-between group cursor-pointer">
-        <span className="text-xs font-semibold uppercase tracking-wider opacity-50">{t.folders}</span>
-        <button 
+        <span className="text-[21px] font-semibold uppercase tracking-wider opacity-50">{t.folders}</span>
+        <button
           onClick={(e) => {
             e.stopPropagation();
             onNewFolder?.();
@@ -158,53 +158,53 @@ export const Sidebar: React.FC<SidebarProps> = ({
       </div>
       <div className="mt-2 px-3 space-y-1">
         {folders.map((folder) => (
-          <button 
-            key={folder.id} 
+          <button
+            key={folder.id}
             onClick={() => handleSelectFolder(folder.id)}
             className={cn(
-              "w-full flex items-center gap-3 px-3 py-2 rounded-lg transition-colors group",
+              "w-full flex items-center gap-4 px-4 py-3 rounded-xl transition-colors group",
               selectedFolderId === folder.id ? "bg-gray-100 dark:bg-white/5 text-gray-900 dark:text-white" : "hover:bg-gray-100 dark:hover:bg-white/5"
             )}
           >
-            <Folder size={18} className={folder.color || 'text-gray-400'} />
-            <span className="text-sm truncate flex-1 text-left">{folder.name}</span>
-            <div className="flex items-center gap-1 ml-auto">
-              <span className="text-xs opacity-50 group-hover:hidden">{getFolderPromptCount(folder.id)}</span>
+            <Folder size={24} className={folder.color || 'text-gray-400'} />
+            <span className="text-[21px] font-medium truncate flex-1 text-left">{folder.name}</span>
+            <div className="flex items-center gap-2 ml-auto">
+              <span className="text-sm opacity-50 group-hover:hidden">{getFolderPromptCount(folder.id)}</span>
               <button
                 onClick={(e) => {
                   e.stopPropagation();
                   onDeleteFolder?.(folder.id);
                 }}
-                className="p-1 hover:bg-red-500/10 text-red-500 rounded opacity-0 group-hover:opacity-100 transition-all"
+                className="p-1.5 hover:bg-red-500/10 text-red-500 rounded-lg opacity-0 group-hover:opacity-100 transition-all"
                 title={t.delete}
               >
-                <Trash2 size={12} />
+                <Trash2 size={16} />
               </button>
-              <ChevronRight size={14} className={cn("transition-opacity hidden group-hover:block", selectedFolderId === folder.id ? "opacity-100" : "opacity-50")} />
+              <ChevronRight size={18} className={cn("transition-opacity hidden group-hover:block", selectedFolderId === folder.id ? "opacity-100" : "opacity-50")} />
             </div>
           </button>
         ))}
       </div>
 
       {/* Tags */}
-      <div className="mt-8 px-6">
-        <span className="text-xs font-semibold uppercase tracking-wider opacity-50">{t.tags}</span>
-        <span 
+      <div className="mt-10 px-8">
+        <span className="text-[21px] font-semibold uppercase tracking-wider opacity-50">{t.tags}</span>
+        <span
           onClick={() => onSelectTag(null)}
-          className="ml-2 text-xs text-blue-600 dark:text-blue-500 cursor-pointer hover:underline"
+          className="ml-3 text-[21px] text-blue-600 dark:text-blue-500 cursor-pointer hover:underline"
         >
           {t.allTags} {allTags.length}
         </span>
       </div>
       <div className="mt-4 px-6 flex flex-wrap gap-2">
         {allTags.map((tag) => (
-          <span 
-            key={tag} 
+          <span
+            key={tag}
             onClick={() => handleSelectTag(tag)}
             className={cn(
               "px-2 py-1 rounded text-xs cursor-pointer transition-colors",
-              selectedTag === tag 
-                ? "bg-blue-600 text-white shadow-lg shadow-blue-600/20" 
+              selectedTag === tag
+                ? "bg-blue-600 text-white shadow-lg shadow-blue-600/20"
                 : "bg-gray-100 dark:bg-white/5 text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-white/10"
             )}
           >
@@ -216,43 +216,43 @@ export const Sidebar: React.FC<SidebarProps> = ({
       {/* Bottom */}
       <div className="mt-auto p-4 space-y-1">
         {user ? (
-          <div className="w-full flex items-center gap-3 px-3 py-2 rounded-lg bg-gray-100 dark:bg-white/5 text-gray-900 dark:text-white mb-2">
-            <div className="w-6 h-6 rounded-full bg-blue-600 flex items-center justify-center text-[10px] text-white font-bold">
+          <div className="w-full flex items-center gap-4 px-4 py-3 rounded-xl bg-gray-100 dark:bg-white/5 text-gray-900 dark:text-white mb-4">
+            <div className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-xs text-white font-bold">
               {user.email[0].toUpperCase()}
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-xs font-medium truncate">{user.email}</p>
+              <p className="text-[19px] font-medium truncate">{user.email}</p>
             </div>
-            <button 
+            <button
               onClick={onLogout}
-              className="text-[10px] text-red-500 hover:underline"
+              className="text-[19px] text-red-500 hover:underline ml-2"
             >
               {t.logout}
             </button>
           </div>
         ) : (
-          <button 
+          <button
             onClick={onLogin}
-            className="w-full flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-white/5 transition-colors text-blue-600 dark:text-blue-400"
+            className="w-full flex items-center gap-4 px-4 py-3 rounded-xl hover:bg-gray-100 dark:hover:bg-white/5 transition-colors text-blue-600 dark:text-blue-400"
           >
-            <User size={18} />
-            <span className="text-sm font-medium">{t.login}</span>
+            <User size={24} />
+            <span className="text-[21px] font-medium">{t.login}</span>
           </button>
         )}
-        <button 
+        <button
           onClick={onToggleTheme}
-          className="w-full flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-white/5 transition-colors text-gray-500 dark:text-gray-400"
+          className="w-full flex items-center gap-4 px-4 py-3 rounded-xl hover:bg-gray-100 dark:hover:bg-white/5 transition-colors text-gray-500 dark:text-gray-400"
           title={theme === 'light' ? t.darkMode : t.lightMode}
         >
-          {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
-          <span className="text-sm">{theme === 'light' ? t.darkMode : t.lightMode}</span>
+          {theme === 'light' ? <Moon size={24} /> : <Sun size={24} />}
+          <span className="text-[21px] font-medium">{theme === 'light' ? t.darkMode : t.lightMode}</span>
         </button>
-        <button 
+        <button
           onClick={onOpenSettings}
-          className="w-full flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-white/5 transition-colors text-gray-500 dark:text-gray-400"
+          className="w-full flex items-center gap-4 px-4 py-3 rounded-xl hover:bg-gray-100 dark:hover:bg-white/5 transition-colors text-gray-500 dark:text-gray-400"
         >
-          <Settings size={18} />
-          <span className="text-sm">{t.settings}</span>
+          <Settings size={24} />
+          <span className="text-[21px] font-medium">{t.settings}</span>
         </button>
       </div>
     </div>

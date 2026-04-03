@@ -98,105 +98,105 @@ export const NewPromptModal: React.FC<NewPromptModalProps> = ({
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            className="relative w-full max-w-2xl bg-white dark:bg-[#1a1d23] border border-gray-200 dark:border-white/10 rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh] transition-colors duration-300"
+            className="relative w-full max-w-5xl bg-white dark:bg-[#1a1d23] border border-gray-200 dark:border-white/10 rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh] transition-colors duration-300"
           >
-            <div className="p-6 border-b border-gray-200 dark:border-white/5 flex items-center justify-between">
-              <h2 className="text-xl font-bold text-gray-900 dark:text-white">
+            <div className="p-8 border-b border-gray-200 dark:border-white/5 flex items-center justify-between">
+              <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
                 {initialData ? t.edit : t.newPrompt}
               </h2>
-              <button
-                onClick={onClose}
-                className="p-2 hover:bg-gray-100 dark:hover:bg-white/5 rounded-lg text-gray-400 transition-colors"
-              >
-                <X size={20} />
-              </button>
+                <button
+                  onClick={onClose}
+                  className="p-3 hover:bg-gray-100 dark:hover:bg-white/5 rounded-xl text-gray-400 transition-colors"
+                >
+                  <X size={28} />
+                </button>
             </div>
 
             <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto p-6 space-y-6">
               <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <label className="text-xs font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500">{t.title}</label>
+                <div className="space-y-3">
+                  <label className="text-[19px] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500">{t.title}</label>
                   <input
                     autoFocus
                     type="text"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
                     placeholder={t.title}
-                    className="w-full bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-xl px-4 py-3 text-gray-900 dark:text-white focus:outline-none focus:border-blue-500 transition-colors"
+                    className="w-full bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-xl px-6 py-4 text-[21px] text-gray-900 dark:text-white focus:outline-none focus:border-blue-500 transition-colors"
                     required
                   />
                 </div>
-                <div className="space-y-2">
-                  <label className="text-xs font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500">{t.folderLabel}</label>
+                <div className="space-y-3">
+                  <label className="text-[19px] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500">{t.folderLabel}</label>
                   <select
                     value={folderId || ''}
                     onChange={(e) => setFolderId(e.target.value || undefined)}
-                    className="w-full bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-xl px-4 py-3 text-gray-900 dark:text-white focus:outline-none focus:border-blue-500 transition-colors appearance-none"
+                    className="w-full bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-xl px-6 py-4 text-[21px] text-gray-900 dark:text-white focus:outline-none focus:border-blue-500 transition-colors appearance-none"
                   >
-                    <option value="" className="bg-white dark:bg-[#1a1d23]">{t.none}</option>
+                    <option value="" className="bg-white dark:bg-[#1a1d23] text-lg">{t.none}</option>
                     {folders.map(f => (
-                      <option key={f.id} value={f.id} className="bg-white dark:bg-[#1a1d23]">{f.name}</option>
+                      <option key={f.id} value={f.id} className="bg-white dark:bg-[#1a1d23] text-lg">{f.name}</option>
                     ))}
                   </select>
                 </div>
               </div>
 
-              <div className="space-y-2">
-                <label className="text-xs font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500">{t.description}</label>
+              <div className="space-y-3">
+                <label className="text-[19px] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500">{t.description}</label>
                 <input
                   type="text"
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
                   placeholder={t.description}
-                  className="w-full bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-xl px-4 py-3 text-gray-900 dark:text-white focus:outline-none focus:border-blue-500 transition-colors"
+                  className="w-full bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-xl px-6 py-4 text-[21px] text-gray-900 dark:text-white focus:outline-none focus:border-blue-500 transition-colors"
                   required
                 />
               </div>
 
-              <div className="space-y-2">
-                <label className="text-xs font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500">{t.systemPrompt}</label>
+              <div className="space-y-3">
+                <label className="text-[19px] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500">{t.systemPrompt}</label>
                 <textarea
                   value={systemPrompt}
                   onChange={(e) => setSystemPrompt(e.target.value)}
                   placeholder="设定 AI 的角色和行为规范..."
                   rows={4}
-                  className="w-full bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-xl px-4 py-3 text-gray-900 dark:text-white focus:outline-none focus:border-blue-500 transition-colors resize-none font-mono text-sm"
+                  className="w-full bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-xl px-6 py-4 text-gray-900 dark:text-white focus:outline-none focus:border-blue-500 transition-colors resize-none font-mono text-[21px]"
                 />
               </div>
 
-              <div className="space-y-2">
-                <label className="text-xs font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500">{t.userPrompt}</label>
+              <div className="space-y-3">
+                <label className="text-[19px] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500">{t.userPrompt}</label>
                 <textarea
                   value={userPrompt}
                   onChange={(e) => setUserPrompt(e.target.value)}
                   placeholder="输入具体的任务指令，可以使用 {{variable}} 作为占位符..."
                   rows={6}
-                  className="w-full bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-xl px-4 py-3 text-gray-900 dark:text-white focus:outline-none focus:border-blue-500 transition-colors resize-none font-mono text-sm"
+                  className="w-full bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-xl px-6 py-4 text-gray-900 dark:text-white focus:outline-none focus:border-blue-500 transition-colors resize-none font-mono text-[21px]"
                 />
               </div>
 
-              <div className="space-y-2">
-                <label className="text-xs font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500">{t.tagsLabel}</label>
-                <div className="flex flex-wrap gap-2 mb-2">
+              <div className="space-y-3">
+                <label className="text-[19px] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500">{t.tagsLabel}</label>
+                <div className="flex flex-wrap gap-3 mb-3">
                   {tags.map(tag => (
-                    <span key={tag} className="flex items-center gap-1 px-2 py-1 bg-blue-600/20 text-blue-600 dark:text-blue-400 rounded text-xs">
+                    <span key={tag} className="flex items-center gap-2 px-3 py-1.5 bg-blue-600/20 text-blue-600 dark:text-blue-400 rounded-lg text-lg">
                       {tag}
                       <button type="button" onClick={() => removeTag(tag)} className="hover:text-blue-800 dark:hover:text-blue-200">
-                        <X size={12} />
+                        <X size={16} />
                       </button>
                     </span>
                   ))}
                 </div>
-                <div className="relative flex gap-2">
+                <div className="relative flex gap-3">
                   <div className="relative flex-1">
-                    <Tag className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-500" size={14} />
+                    <Tag className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-500" size={20} />
                     <input
                       type="text"
                       value={tagInput}
                       onChange={(e) => setTagInput(e.target.value)}
                       onKeyDown={handleAddTag}
                       placeholder={t.tagsLabel}
-                      className="w-full bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-xl pl-10 pr-4 py-2.5 text-sm text-gray-900 dark:text-white focus:outline-none focus:border-blue-500 transition-colors"
+                      className="w-full bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-xl pl-12 pr-6 py-4 text-[21px] text-gray-900 dark:text-white focus:outline-none focus:border-blue-500 transition-colors"
                     />
                   </div>
                   <button
@@ -209,7 +209,7 @@ export const NewPromptModal: React.FC<NewPromptModalProps> = ({
                         setTagInput('');
                       }
                     }}
-                    className="px-4 py-2 bg-gray-100 dark:bg-white/5 hover:bg-gray-200 dark:hover:bg-white/10 text-gray-600 dark:text-gray-300 rounded-xl text-sm transition-colors"
+                    className="px-6 py-3 bg-gray-100 dark:bg-white/5 hover:bg-gray-200 dark:hover:bg-white/10 text-gray-600 dark:text-gray-300 rounded-xl text-[21px] font-bold transition-colors"
                   >
                     {t.add}
                   </button>
@@ -217,19 +217,19 @@ export const NewPromptModal: React.FC<NewPromptModalProps> = ({
               </div>
             </form>
 
-            <div className="p-6 border-t border-gray-200 dark:border-white/5 bg-gray-50 dark:bg-[#16191e] flex items-center justify-end gap-3">
+            <div className="p-8 border-t border-gray-200 dark:border-white/5 bg-gray-50 dark:bg-[#16191e] flex items-center justify-end gap-4">
               <button
                 type="button"
                 onClick={onClose}
-                className="px-6 py-2.5 hover:bg-gray-200 dark:hover:bg-white/5 text-gray-500 dark:text-gray-400 rounded-xl font-semibold transition-colors"
+                className="px-8 py-4 hover:bg-gray-200 dark:hover:bg-white/5 text-gray-500 dark:text-gray-400 rounded-xl text-[21px] font-bold transition-colors"
               >
                 {t.cancel}
               </button>
               <button
                 onClick={handleSubmit}
-                className="flex items-center gap-2 px-8 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-semibold transition-all shadow-lg shadow-blue-600/20"
+                className="flex items-center gap-4 px-10 py-5 bg-blue-600 hover:bg-blue-700 text-white rounded-2xl text-[21px] font-bold transition-all shadow-xl shadow-blue-600/20"
               >
-                <Plus size={18} />
+                <Plus size={24} />
                 {initialData ? t.save : t.new}
               </button>
             </div>

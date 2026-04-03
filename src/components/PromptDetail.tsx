@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { 
+  LayoutGrid,
   Clock, 
   Tag, 
   Copy, 
@@ -78,13 +79,14 @@ export const PromptDetail: React.FC<PromptDetailProps> = ({
   };
 
   if (!prompt) return (
-    <div className="flex-1 flex flex-col items-center justify-center text-gray-500 gap-4">
-      <span>{t.selectPrompt}</span>
+    <div className="flex-1 flex flex-col items-center justify-center text-gray-500 gap-8 bg-[#f8f9fa] dark:bg-[#1a1d23]">
+      <LayoutGrid size={64} className="opacity-10" />
+      <span className="text-[21px] font-medium">{t.selectPrompt}</span>
       <button 
         onClick={onNew}
-        className="flex items-center gap-2 px-6 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-semibold transition-all shadow-lg shadow-blue-600/20"
+        className="flex items-center gap-4 px-10 py-5 bg-blue-600 hover:bg-blue-700 text-white rounded-2xl text-[21px] font-bold transition-all shadow-xl shadow-blue-600/20"
       >
-        <Plus size={18} />
+        <Plus size={24} />
         {t.newPrompt}
       </button>
     </div>
@@ -187,7 +189,7 @@ export const PromptDetail: React.FC<PromptDetailProps> = ({
         {/* System Prompt */}
         <div className="space-y-4">
           <div className="flex items-center justify-between">
-            <h2 className="text-xs font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500">{t.systemPrompt}</h2>
+            <h2 className="text-sm font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500">{t.systemPrompt}</h2>
           </div>
           <div 
             className="p-6 bg-gray-50 dark:bg-white/5 rounded-2xl border border-gray-200 dark:border-white/5 font-mono leading-relaxed text-gray-700 dark:text-gray-300"
@@ -200,8 +202,8 @@ export const PromptDetail: React.FC<PromptDetailProps> = ({
         {/* User Prompt */}
         <div className="space-y-4">
           <div className="flex items-center justify-between">
-            <h2 className="text-xs font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500">{t.userPrompt}</h2>
-            <span className="text-xs text-gray-400 dark:text-gray-500 hover:text-gray-900 dark:hover:text-white cursor-pointer transition-colors">Markdown</span>
+            <h2 className="text-sm font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500">{t.userPrompt}</h2>
+            <span className="text-sm text-gray-400 dark:text-gray-500 hover:text-gray-900 dark:hover:text-white cursor-pointer transition-colors">Markdown</span>
           </div>
           <div 
             className="p-6 bg-gray-50 dark:bg-white/5 rounded-2xl border border-gray-200 dark:border-white/5 font-mono leading-relaxed text-gray-700 dark:text-gray-300 whitespace-pre-wrap"

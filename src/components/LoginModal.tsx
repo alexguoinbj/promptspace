@@ -48,13 +48,13 @@ export const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose, onLogin
     setErrorMsg('');
     setSuccessMsg('');
     setIsSending(true);
-    
+
     const { error } = await supabase.auth.signInWithOtp({
       email: email,
     });
 
     setIsSending(false);
-    
+
     if (error) {
       setErrorMsg(error.message);
       return;
@@ -70,14 +70,14 @@ export const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose, onLogin
     setErrorMsg('');
     setSuccessMsg('');
     setIsSubmitting(true);
-    
+
     if (mode === 'login') {
       if (!password) {
         setErrorMsg(language === 'zh' ? '请输入密码' : 'Please enter password');
         setIsSubmitting(false);
         return;
       }
-      
+
       const { data, error } = await supabase.auth.signInWithPassword({
         email,
         password
@@ -94,7 +94,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose, onLogin
         setIsSubmitting(false);
         return;
       }
-      
+
       // 注册逻辑：先验证验证码登录，然后再设置密码
       const { data, error } = await supabase.auth.verifyOtp({
         email,
@@ -123,14 +123,14 @@ export const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose, onLogin
   return (
     <AnimatePresence>
       <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           onClick={onClose}
           className="absolute inset-0 bg-black/60 backdrop-blur-sm"
         />
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, scale: 0.95, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
@@ -154,7 +154,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose, onLogin
                   {language === 'zh' ? '注册' : 'Register'}
                 </button>
               </div>
-              <button 
+              <button
                 onClick={onClose}
                 className="p-2 hover:bg-gray-100 dark:hover:bg-white/5 rounded-full text-gray-400 transition-colors"
               >
@@ -163,7 +163,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose, onLogin
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-6">
-              
+
               {errorMsg && (
                 <div className="p-3 text-sm text-red-500 bg-red-50 dark:bg-red-500/10 rounded-xl">
                   {errorMsg}
@@ -181,8 +181,8 @@ export const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose, onLogin
                 </label>
                 <div className="relative">
                   <Mail className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
-                  <input 
-                    type="email" 
+                  <input
+                    type="email"
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
@@ -200,8 +200,8 @@ export const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose, onLogin
                   <div className="flex gap-3">
                     <div className="relative flex-1">
                       <ShieldCheck className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
-                      <input 
-                        type="text" 
+                      <input
+                        type="text"
                         required
                         maxLength={8}
                         value={code}
@@ -210,7 +210,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose, onLogin
                         className="w-full bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-xl py-3 pl-10 pr-4 text-sm text-gray-900 dark:text-white focus:outline-none focus:border-blue-500 transition-colors"
                       />
                     </div>
-                    <button 
+                    <button
                       type="button"
                       disabled={countdown > 0 || !email || isSending}
                       onClick={handleSendCode}
@@ -228,8 +228,8 @@ export const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose, onLogin
                 </label>
                 <div className="relative">
                   <Lock className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
-                  <input 
-                    type="password" 
+                  <input
+                    type="password"
                     required
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
@@ -239,7 +239,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose, onLogin
                 </div>
               </div>
 
-              <button 
+              <button
                 type="submit"
                 disabled={isSubmitting || !email || (mode === 'login' ? !password : (!code || !password))}
                 className="w-full py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold transition-all shadow-lg shadow-blue-600/20 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"

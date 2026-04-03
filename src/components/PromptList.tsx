@@ -40,7 +40,7 @@ export const PromptList: React.FC<PromptListProps> = ({
             placeholder={t.searchPlaceholder}
             value={searchQuery}
             onChange={(e) => onSearchChange(e.target.value)}
-            className="w-full bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-lg py-2 pl-10 pr-10 text-sm text-gray-900 dark:text-white focus:outline-none focus:border-blue-500 transition-colors"
+            className="w-full bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-xl py-2 pl-10 pr-10 text-base text-gray-900 dark:text-white focus:outline-none focus:border-blue-500 transition-colors"
           />
           {searchQuery && (
             <button 
@@ -54,20 +54,20 @@ export const PromptList: React.FC<PromptListProps> = ({
       </div>
 
       {/* Filters */}
-      <div className="px-4 py-2 flex items-center justify-between text-gray-400 border-b border-gray-200 dark:border-white/5">
-        <span className="text-xs font-medium">
+      <div className="px-6 py-3 flex items-center justify-between text-gray-400 border-b border-gray-200 dark:border-white/5">
+        <span className="text-xl font-medium">
           {prompts.length > 0 ? `${prompts.length} ${t.appName}` : t.noPrompts}
         </span>
-        <div className="flex items-center gap-3">
-          <div className="flex items-center gap-1 bg-gray-100 dark:bg-white/5 p-1 rounded">
-            <button onClick={() => setViewMode('grid')} className="p-0.5 rounded transition-colors hover:bg-gray-200 dark:hover:bg-white/10" title={language === 'zh' ? '卡片视图' : 'Grid view'}>
-              <LayoutGrid size={14} className={viewMode === 'grid' ? 'text-blue-500' : 'text-gray-400 opacity-50'} />
+        <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 bg-gray-100 dark:bg-white/5 p-1.5 rounded-lg">
+            <button onClick={() => setViewMode('grid')} className="p-1 rounded-md transition-colors hover:bg-gray-200 dark:hover:bg-white/10" title={language === 'zh' ? '卡片视图' : 'Grid view'}>
+              <LayoutGrid size={18} className={viewMode === 'grid' ? 'text-blue-500' : 'text-gray-400 opacity-50'} />
             </button>
-            <button onClick={() => setViewMode('columns')} className="p-0.5 rounded transition-colors hover:bg-gray-200 dark:hover:bg-white/10" title={language === 'zh' ? '紧凑视图' : 'Compact view'}>
-              <Columns size={14} className={viewMode === 'columns' ? 'text-blue-500' : 'text-gray-400 opacity-50'} />
+            <button onClick={() => setViewMode('columns')} className="p-1 rounded-md transition-colors hover:bg-gray-200 dark:hover:bg-white/10" title={language === 'zh' ? '紧凑视图' : 'Compact view'}>
+              <Columns size={18} className={viewMode === 'columns' ? 'text-blue-500' : 'text-gray-400 opacity-50'} />
             </button>
-            <button onClick={() => setViewMode('list')} className="p-0.5 rounded transition-colors hover:bg-gray-200 dark:hover:bg-white/10" title={language === 'zh' ? '列表视图' : 'List view'}>
-              <List size={14} className={viewMode === 'list' ? 'text-blue-500' : 'text-gray-400 opacity-50'} />
+            <button onClick={() => setViewMode('list')} className="p-1 rounded-md transition-colors hover:bg-gray-200 dark:hover:bg-white/10" title={language === 'zh' ? '列表视图' : 'List view'}>
+              <List size={18} className={viewMode === 'list' ? 'text-blue-500' : 'text-gray-400 opacity-50'} />
             </button>
           </div>
         </div>
@@ -79,9 +79,9 @@ export const PromptList: React.FC<PromptListProps> = ({
         viewMode === 'grid' ? 'space-y-2' : viewMode === 'columns' ? 'space-y-1' : 'space-y-0.5'
       )}>
         {prompts.length === 0 ? (
-          <div className="flex flex-col items-center justify-center h-full text-gray-400 dark:text-gray-500 p-4 text-center gap-2">
-            <LayoutGrid size={32} className="opacity-20" />
-            <p className="text-xs">{t.noPrompts}</p>
+          <div className="flex flex-col items-center justify-center h-full text-gray-400 dark:text-gray-500 p-8 text-center gap-4">
+            <LayoutGrid size={40} className="opacity-20" />
+            <p className="text-xl font-medium">{t.noPrompts}</p>
           </div>
         ) : (
           prompts.map((prompt) => (
@@ -99,7 +99,7 @@ export const PromptList: React.FC<PromptListProps> = ({
               <div className="flex items-center justify-between mb-1">
                 <h3 className={cn(
                   "font-semibold",
-                  viewMode === 'list' ? 'text-xs' : 'text-sm',
+                  viewMode === 'list' ? 'text-sm' : 'text-[19px]',
                   selectedId === prompt.id ? "text-white" : "text-gray-900 dark:text-gray-200"
                 )}>
                   {prompt.title}
